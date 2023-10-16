@@ -21,8 +21,9 @@ async def dream(ctx, *, prompt):
     """Generate an image from a text prompt using the stable-diffusion model"""
     msg = await ctx.send(f"“{prompt}”\n> Generating...")
 
-    model = replicate.models.get("stability-ai/stable-diffusion")
-    image = model.predict(prompt=prompt)[0]
+    model = replicate.models.get("lucataco/realistic-vision-v5")
+    version = model.versions.get("8aeee50b868f06a1893e3b95a8bb639a8342e846836f3e0211d6a13c158505b1")
+    image = version.predict(prompt=prompt)[0]
 
     await msg.edit(content=f"“{prompt}”\n{image}")
 
